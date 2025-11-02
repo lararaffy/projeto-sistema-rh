@@ -1,23 +1,27 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Sidebar from "./components/Sidebar";
-import Colaboradores from "./pages/Colaboradores";
-import ControlePonto from "./pages/ControlePonto";
+import Sidebar from "./components/Sidebar/Sidebar";
+import Colaboradores from "./pages/Colaboradores/Colaboradores";
+import ControlePonto from "./pages/ControlePonto/ControlePonto";
 
 function App() {
   return (
     <Router>
-      <div style={{ 
-        display: "flex", 
-        minHeight: "100vh",
-        width: "100%",
-        overflow: "hidden" // Adicionado
-      }}>
+      <div
+        style={{
+          display: "flex",
+          minHeight: "100vh",
+          width: "100%",
+          overflow: "hidden", // Adicionado
+        }}
+      >
         <Sidebar />
-        <div style={{ 
-          flex: 1,
-          width: "100%", // Adicionado
-          overflow: "auto" // Adicionado
-        }}>
+        <div
+          style={{
+            flex: 1,
+            width: "100%", // Adicionado
+            overflow: "auto", // Adicionado
+          }}
+        >
           <Routes>
             <Route path="/colaboradores" element={<Colaboradores />} />
             <Route path="/controle-ponto" element={<ControlePonto />} />

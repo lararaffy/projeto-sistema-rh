@@ -1,20 +1,50 @@
 import React, { useState } from "react";
 import "./Colaboradores.css";
-import ColaboradoresTable from "../components/ColaboradoresTable";
-import type { Colaborador } from "../components/ColaboradoresTable";
-import Pagination from "../components/Pagination";
-import Modal from "../components/Modal";
+import ColaboradoresTable from "../../components/ColaboradoresTable/ColaboradoresTable";
+import type { Colaborador } from "../../components/ColaboradoresTable/ColaboradoresTable";
+import Pagination from "../../components/Pagination/Pagination";
+import Modal from "../../components/ModalColaborador/Modal";
 
 const Colaboradores: React.FC = () => {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [colaboradores, setColaboradores] = useState<Colaborador[]>([
-    { id: 1, nome: "Ana Silva", cargo: "Designer de Produto", departamento: "Tecnologia", status: "Ativo" },
-    { id: 2, nome: "Bruno Costa", cargo: "Engenheiro de Software", departamento: "Tecnologia", status: "Ativo" },
-    { id: 3, nome: "Carla Dias", cargo: "Analista de RH", departamento: "Recursos Humanos", status: "Inativo" },
-    { id: 4, nome: "Daniel Martins", cargo: "Gerente de Marketing", departamento: "Marketing", status: "Ativo" },
-    { id: 5, nome: "Eduarda Lima", cargo: "Analista Financeiro", departamento: "Financeiro", status: "Férias" },
+    {
+      id: 1,
+      nome: "Ana Silva",
+      cargo: "Designer de Produto",
+      departamento: "Tecnologia",
+      status: "Ativo",
+    },
+    {
+      id: 2,
+      nome: "Bruno Costa",
+      cargo: "Engenheiro de Software",
+      departamento: "Tecnologia",
+      status: "Ativo",
+    },
+    {
+      id: 3,
+      nome: "Carla Dias",
+      cargo: "Analista de RH",
+      departamento: "Recursos Humanos",
+      status: "Inativo",
+    },
+    {
+      id: 4,
+      nome: "Daniel Martins",
+      cargo: "Gerente de Marketing",
+      departamento: "Marketing",
+      status: "Ativo",
+    },
+    {
+      id: 5,
+      nome: "Eduarda Lima",
+      cargo: "Analista Financeiro",
+      departamento: "Financeiro",
+      status: "Férias",
+    },
   ]);
 
   const itemsPerPage = 3;
@@ -103,15 +133,30 @@ const Colaboradores: React.FC = () => {
         <form className="form-colaborador" onSubmit={handleAddColaborador}>
           <div className="form-group">
             <label>Nome</label>
-            <input type="text" name="nome" required placeholder="Digite o nome" />
+            <input
+              type="text"
+              name="nome"
+              required
+              placeholder="Digite o nome"
+            />
           </div>
           <div className="form-group">
             <label>Cargo</label>
-            <input type="text" name="cargo" required placeholder="Digite o cargo" />
+            <input
+              type="text"
+              name="cargo"
+              required
+              placeholder="Digite o cargo"
+            />
           </div>
           <div className="form-group">
             <label>Departamento</label>
-            <input type="text" name="departamento" required placeholder="Digite o departamento" />
+            <input
+              type="text"
+              name="departamento"
+              required
+              placeholder="Digite o departamento"
+            />
           </div>
           <div className="form-group">
             <label>Status</label>
