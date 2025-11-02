@@ -1,62 +1,65 @@
-import React from 'react'
-import type { Funcionario } from './AuditPage'
+import React from "react";
+import type { Funcionario } from "./AuditPage";
 
 interface Props {
-  funcionario: Funcionario
+  funcionario: Funcionario;
+  onClose: () => void;
 }
 
-const DetailsPanel: React.FC<Props> = ({ funcionario }) => {
+const DetailsPanel: React.FC<Props> = ({ funcionario, onClose }) => {
   return (
     <aside className="details-panel">
       <div className="panel-header">
         <h3>Detalhes da Ocorrência</h3>
-        <button>
-          <span className="material-symbols-outlined">close</span>
-        </button>
+        <button className="fechar-btn" onClick={onClose}>✕</button>
       </div>
 
-      <div className="panel-content">
-        <div className="profile">
-          <img
-            src={funcionario.foto}
-          />
-          <div>
-            <p>{funcionario.nome}</p>
+      <div className="detalhes-container">
+        <div className="perfil">
+          <img src={funcionario.foto} alt={funcionario.nome} />
+          <div className="info-basica">
+            <h2>{funcionario.nome}</h2>
             <p>{funcionario.id}</p>
           </div>
         </div>
 
-        <div className="details">
-          <p><strong>Data:</strong> {funcionario.data}</p>
-          <p><strong>Horário Esperado:</strong> {funcionario.esperado}</p>
-          <p><strong>Horário Registrado:</strong> {funcionario.registrado}</p>
-          <p><strong>Inconsistência:</strong> {funcionario.tipo}</p>
-        </div>
+        <div className="info-ocorrencia">
+          <p>
+            <strong>Data:</strong> {funcionario.data}
+          </p>
+          <p>
+            <strong>Horário Esperado:</strong> {funcionario.esperado}
+          </p>
+          <p>
+            <strong>Horário Registrado:</strong> {funcionario.registrado}
+          </p>
+          <p>
+            <strong>Inconsistência:</strong> {funcionario.tipo}
+          </p>
 
-        <div className="form">
-          <label htmlFor="action-select">Ação a ser tomada</label>
-          <select id="action-select">
-            <option>Abonar Atraso</option>
-            <option>Justificar Falta</option>
-            <option>Aprovar Hora Extra</option>
-            <option>Reprovar</option>
-          </select>
+          <label>
+            <strong>Ação a ser tomada:</strong>
+            <select>
+              <option>Abonar Atraso</option>
+              <option>Descontar</option>
+              <option>Solicitar Justificativa</option>
+              <option>Adicionar a Lista de Pendências</option>
+            </select>
+          </label>
 
-          <label htmlFor="justification">Justificativa / Observações</label>
-          <textarea
-            id="justification"
-            rows={4}
-            placeholder="Ex: Atestado médico, problema no transporte..."
-          />
-        </div>
+          <label>
+            <strong>Justificativa / Observações:</strong>
+            <textarea placeholder="Ex: Atestado médico, problema no transporte..." />
+          </label>
 
-        <div className="form-actions">
-          <button className="cancel">Cancelar</button>
-          <button className="save">Salvar Alterações</button>
+          <div className="botoes">
+            <button className="salvar">Salvar</button>
+            <button className="cancelar">Cancelar</button>
+          </div>
         </div>
       </div>
     </aside>
-  )
-}
+  );
+};
 
-export default DetailsPanel
+export default DetailsPanel;

@@ -1,30 +1,61 @@
 import React from 'react'
 
-const Filters: React.FC = () => {
+interface Props {
+  busca: string
+  setBusca: (valor: string) => void
+  filtroTipo: string
+  setFiltroTipo: (tipo: string) => void
+  dataInicio: string
+  setDataInicio: (valor: string) => void
+  dataFim: string
+  setDataFim: (valor: string) => void
+}
+
+const Filters: React.FC<Props> = ({
+  busca,
+  setBusca,
+  filtroTipo,
+  setFiltroTipo,
+  dataInicio,
+  setDataInicio,
+  dataFim,
+  setDataFim,
+}) => {
   return (
-    <div className="filters">
-      <div className="filters-row">
-        {/* Seletor de data */}
-        <div className="date-picker">
-          <span className="material-symbols-outlined">calendar_month</span>
-          <span> 01/11/2023 - 30/11/2023 </span>
-          <span className="material-symbols-outlined">expand_more</span>
+    <div className="filters-container">
+      <div className="date-range">
+        <span className="material-symbols-outlined">calendar_month</span>
+        <div className='calendar-visual'>
+          <input
+            type="date"
+            value={dataInicio}
+            onChange={(e) => setDataInicio(e.target.value)}
+          />
+          <span> - </span>
+          <input
+            type="date"
+            value={dataFim}
+            onChange={(e) => setDataFim(e.target.value)}
+          />
         </div>
-
-        {/* Campo de busca */}
-        <div className="search">
-          <input type="text" placeholder="Buscar por colaborador ou matrícula" />
-        </div>
-
-        {/* Botão de aplicar */}
-        <button className="apply-button">Aplicar Filtros</button>
       </div>
 
-      {/* Chips de categoria */}
-      <div className="chips">
-        {['Todos', 'Faltas', 'Atrasos', 'Horas Extras'].map((label, i) => (
-          <button key={label} className={`chip ${i === 0 ? 'active' : ''}`}>
-            {label}
+      <input
+        type="text"
+        className="search-input"
+        placeholder="Buscar por colaborador"
+        value={busca}
+        onChange={(e) => setBusca(e.target.value)}
+      />
+
+      <div className="filter-buttons">
+        {['Todos', 'Faltas', 'Atrasos', 'Horas Extras'].map((tipo) => (
+          <button
+            key={tipo}
+            className={`filter-button ${filtroTipo === tipo ? 'active' : ''}`}
+            onClick={() => setFiltroTipo(tipo)}
+          >
+            {tipo}
           </button>
         ))}
       </div>

@@ -1,11 +1,15 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 interface Props {
   onAjudaClick?: () => void
 }
 
 const Sidebar: React.FC<Props> = ({ onAjudaClick }) => {
+  const location = useLocation()
+
+  const isActive = (path: string) => location.pathname === path
+
   return (
     <aside className="sidebar">
       <div>
@@ -21,23 +25,23 @@ const Sidebar: React.FC<Props> = ({ onAjudaClick }) => {
         </div>
 
         <nav>
-          <Link to="#" className="nav-link">
+          <Link to="#" className={`nav-link ${isActive('/colaboradores') ? 'active' : ''}`}>
             <span className="material-symbols-outlined">groups</span>
             Colaboradores
           </Link>
-          <Link to="#" className="nav-link">
+          <Link to="#" className={`nav-link ${isActive('/registro') ? 'active' : ''}`}>
             <span className="material-symbols-outlined">check_in_out</span>
             Registro de Ponto
           </Link>
-          <Link to="/" className="nav-link active">
+          <Link to="/" className={`nav-link ${isActive('/') ? 'active' : ''}`}>
             <span className="material-symbols-outlined">history</span>
             Auditoria de Ponto
           </Link>
-          <Link to="#" className="nav-link">
+          <Link to="#" className={`nav-link ${isActive('/relatorios') ? 'active' : ''}`}>
             <span className="material-symbols-outlined">bar_chart</span>
             Relatórios de Ponto
           </Link>
-          <Link to="/configuracoes" className="nav-link">
+          <Link to="/configuracoes" className={`nav-link ${isActive('/configuracoes') ? 'active' : ''}`}>
             <span className="material-symbols-outlined">tune</span>
             Configurações
           </Link>

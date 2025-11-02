@@ -15,20 +15,42 @@ export interface Funcionario {
   registrado: string
   tipo: string
   foto: string
+  status: string
 }
+
 
 const AuditPage: React.FC = () => {
   const [selecionado, setSelecionado] = useState<Funcionario | null>(null)
   const [mostrarAjuda, setMostrarAjuda] = useState(false)
+  const [busca, setBusca] = useState('')
+  const [filtroTipo, setFiltroTipo] = useState('Todos')
+  const [dataInicio, setDataInicio] = useState('2023-11-01')
+  const [dataFim, setDataFim] = useState('2023-11-30')
 
   return (
     <>
       <PageLayout sidebar={<Sidebar onAjudaClick={() => setMostrarAjuda(true)} />}>
         <Header />
-        <Filters />
+        <Filters
+          busca={busca}
+          setBusca={setBusca}
+          filtroTipo={filtroTipo}
+          setFiltroTipo={setFiltroTipo}
+          dataInicio={dataInicio}
+          setDataInicio={setDataInicio}
+          dataFim={dataFim}
+          setDataFim={setDataFim}
+        />
         <div className="audit-content">
-          <InconsistenciesTable onSelect={setSelecionado} />
-          {selecionado && <DetailsPanel funcionario={selecionado} />}
+          <InconsistenciesTable
+            onSelect={setSelecionado}
+            filtro={busca}
+            tipo={filtroTipo}
+            dataInicio={dataInicio}
+            dataFim={dataFim}
+          />
+          {selecionado && <DetailsPanel 
+          funcionario={selecionado} onClose={() => setSelecionado(null)} />}
         </div>
       </PageLayout>
 
