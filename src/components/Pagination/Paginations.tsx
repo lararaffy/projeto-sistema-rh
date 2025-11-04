@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Pagination.css";
+import "./Paginations.css";
 
 interface PaginationProps {
   totalPages?: number; // ← Tornamos opcional

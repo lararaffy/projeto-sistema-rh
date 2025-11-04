@@ -3,7 +3,7 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import StatsCards from "../../components/StatsCards/StatsCards";
 import Filters from "../../components/Filters/Filters";
 import Table from "../../components/Table/Table";
-import Pagination from "../../components/Pagination/Pagination";
+import Pagination from "../../components/Pagination/Paginations";
 
 import "./Reports.css";
 
